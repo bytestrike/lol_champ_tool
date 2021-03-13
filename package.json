@@ -1,6 +1,6 @@
 {
   "name": "@kounadev/lol",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "a command line interface for some league utils",
   "main": "dist/index.js",
   "scripts": {
@@ -14,7 +14,7 @@
     "start": "node dist/cli/index.js"
   },
   "bin": {
-    "lol": "./dist/cli/cli.js"
+    "lol": "dist/cli/cli.js"
   },
   "author": "kouna",
   "license": "ISC",
