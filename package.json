@@ -1,6 +1,6 @@
 {
   "name": "@kounadev/lol",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "a command line interface for some league utils",
   "main": "dist/index.js",
   "scripts": {
