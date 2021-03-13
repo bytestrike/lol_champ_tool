@@ -23,7 +23,7 @@ export const league:CommandModule<RawOptions, LeagueOptions & RawOptions> = {
 
     if (mode === 'aram' || mode === 'a') {
       return refined.app.browserInterface
-        .open(`https://u.gg/lol/champions/${mode}/${champ}-${mode}`)
+        .open(`https://u.gg/lol/champions/aram/${champ}-aram`)
     }
 
     return refined.app.browserInterface
