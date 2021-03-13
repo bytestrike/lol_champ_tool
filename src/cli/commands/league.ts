@@ -1,5 +1,5 @@
 import { CommandModule } from 'yargs'
-import { RawOptions, refineOptions } from '..'
+import { RawOptions, refineOptions } from '../cli'
 
 interface LeagueOptions {
   mode: string
