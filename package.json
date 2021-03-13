@@ -9,7 +9,7 @@
     "build": "npm exec tsc && npm run shebangify -- dist/cli/cli.js",
     "test": "npm exec mocha -- --timeout 60000 dist/**/*.spec.js --exit",
     "test:dev": "npm exec mocha -- --require ts-node/register --timeout 60000 src/**/*.spec.ts --exit",
-    "util:publish": "npm run clean && npm run build && npm run test && npm version patch && npm publish --access=public --scope=@kounadev",
+    "util:publish": "npm run clean && npm run build && npm version patch && npm publish --access=public --scope=@kounadev",
     "start:dev": "npm exec ts-node -- src/cli/index.ts",
     "start": "node dist/cli/index.js"
   },
