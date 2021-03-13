@@ -21,6 +21,5 @@
     "pretty": false,
     "sourceMap": true,
     "target": "ES6"
-  },
-  "include": ["src"]
+  }
 }

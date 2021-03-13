@@ -1,4 +1,4 @@
-import { defaultConfig } from '../defaults/config'
+import { defaultConfig } from '../defaults/conf'
 import { BrowserMap, Config as BrowserConfig } from '../types/Browser'
 import { Config } from '../types/Config'
 import * as BI from './BrowserInterface'

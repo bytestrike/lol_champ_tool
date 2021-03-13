@@ -1,7 +1,7 @@
 import fs from 'fs'
 import yargs from 'yargs'
 import path from 'path'
-import { defaultConfig } from '../lib/defaults/config'
+import { defaultConfig } from '../lib/defaults/conf'
 import App from '../lib/app/App'
 import { league } from './commands/league'
 import os from 'os'
