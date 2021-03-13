@@ -1,26 +1,22 @@
-import aix from './aix'
+import { spawn } from 'child_process'
+import path from 'path'
 import { currentPlatform } from './currentPlatform'
-import darwin from './darwin'
-import freebsd from './freebsd'
 import { Input } from './Input'
-import linux from './linux'
-import openbsd from './openbsd'
-import { Platform } from './Platform'
 import { forPlatform } from './PlatformMap'
-import sunos from './sunos'
-import win32 from './win32'
 
 export type CommandInput = Input<string>
 export type ArgsInput = Input<string[]>
 
 export interface Options {
   args?: ArgsInput
+  platformCommand?: CommandInput
   platformArgs?: ArgsInput
 }
 
 export interface CompletedOptions {
   args: string[]
   platformArgs: string[]
+  platformCommand?: string
 }
 
 export function exec (command: CommandInput, options: Options) {
@@ -28,27 +24,19 @@ export function exec (command: CommandInput, options: Options) {
   const _command = forPlatform(command, platform)
   const _args = forPlatform(options.args, platform) || []
   const _platformArgs = forPlatform(options.platformArgs, platform) || []
-  const _options:CompletedOptions = {
-    args: _args,
-    platformArgs: _platformArgs
-  }
+  const _platformCommand = forPlatform(options.platformCommand, platform)
 
-  switch (platform) {
-    case Platform.AIX:
-      return aix.exec(_command, _options)
-    case Platform.DARWIN:
-      return darwin.exec(_command, _options)
-    case Platform.FREEBSD:
-      return freebsd.exec(_command, _options)
-    case Platform.LINUX:
-      return linux.exec(_command, _options)
-    case Platform.OPENBSD:
-      return openbsd.exec(_command, _options)
-    case Platform.SUNOS:
-      return sunos.exec(_command, _options)
-    case Platform.WIN32:
-      return win32.exec(_command, _options)
-    default:
-      throw new Error(`platform ${platform} not implemented.`)
-  }
+  const { dir, base } = path.parse(_command)
+
+  const segments = [_platformCommand, ..._platformArgs, base, ..._args]
+    .filter(_ => typeof _ !== 'undefined')
+
+  const [cmd, ...args] = segments
+
+  console.log(dir)
+
+  return spawn(cmd, args, {
+    cwd: dir,
+    stdio: ['pipe', 'pipe', 'pipe']
+  })
 }

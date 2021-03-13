@@ -1,4 +1,4 @@
-import { ChildProcess } from 'node:child_process'
+import { ChildProcess } from 'child_process'
 import { CompletedOptions } from './main'
 
 interface ExecFunction {

@@ -4,11 +4,14 @@
   "description": "a command line interface for some league utils",
   "main": "dist/index.js",
   "scripts": {
-    "clean": "node_modules/.bin/rimraf dist",
-    "build": "node_modules/.bin/tsc",
-    "test": "node_modules/.bin/mocha --timeout 60000 dist/**/*.spec.js --exit",
-    "test:dev": "node_modules/.bin/mocha --require ts-node/register --timeout 60000 src/**/*.spec.ts --exit",
-    "util:publish": "npm run clean && npm run build && npm run test && npm version patch && npm publish --access=public --scope=@kounaio"
+    "clean": "npm exec rimraf -- dist",
+    "shebangify": "npm exec ts-node -- src/tools/shebangify.ts",
+    "build": "npm exec tsc && npm run shebangify -- dist/cli/index.js",
+    "test": "npm exec mocha -- --timeout 60000 dist/**/*.spec.js --exit",
+    "test:dev": "npm exec mocha -- --require ts-node/register --timeout 60000 src/**/*.spec.ts --exit",
+    "util:publish": "npm run clean && npm run build && npm run test && npm version patch && npm publish --access=public --scope=@kounadev",
+    "start:dev": "npm exec ts-node -- src/cli/index.ts",
+    "start": "node dist/cli/index.js"
   },
   "author": "kouna",
   "license": "ISC",

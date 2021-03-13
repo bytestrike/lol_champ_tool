@@ -1,5 +1,5 @@
-import { BrowserMode } from './BrowserMode'
+import { Config as BrowserConfig } from './Browser'
 
 export interface Config {
-  browserMode: BrowserMode
+  browser: BrowserConfig
 }
